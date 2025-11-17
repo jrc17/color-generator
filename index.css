@@ -28,7 +28,7 @@ select,
 }
 select::picker-icon {
   content: "";
-  background: url("Selector.png");
+  background: url("img/Selector.png");
   background-size: cover;
   width: 1.25em;
   height: 1.25em;
@@ -58,7 +58,7 @@ option::checkmark {
   order: 1;
   margin-left: auto;
   content: "";
-  background: url("Check.png");
+  background: url("img/Check.png");
   background-size: cover;
   width: 1.25em;
   height: 1.25em;
