@@ -19,4 +19,4 @@ The Color Generator is a frontend app that generates color palettes based on a s
 
 ## Live Demo
 
-[[Live App Link](https://courageous-bombolone-f0d0d3.netlify.app/)]
+[Live App Link](https://courageous-bombolone-f0d0d3.netlify.app/)
