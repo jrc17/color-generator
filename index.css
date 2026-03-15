@@ -84,11 +84,14 @@ button {
   height: 80vh;
   text-align: center;
   color: #2b283a;
+  /* border: 1px solid #000; */
 }
 .color-container p {
   padding: 0.9167em 0;
+  text-transform: uppercase;
 }
 img {
   width: 100%;
   height: 100%;
+
 }
