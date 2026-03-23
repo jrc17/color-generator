@@ -9,3 +9,17 @@ HSL is far better for generating colors, because you can easily create harmoniou
 h: 0-360
 s: 0-100
 l: 0-100
+
+
+make sure to make color and scheme into state elements so that the values dont reset.
+check using just value and onchange property
+
+TODO: add random value
+
+you do not need the function to convert to hex code just use the api. you can also get the color name.
+
+
+we can think oof refactoring later.
+first make it work.
+
+TODO:refactor code.
