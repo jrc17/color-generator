@@ -1,79 +1,84 @@
-import { useEffect, useState} from "react"
+import {useState} from "react"
+import {colorGenerator,customSchemes} from "../src/utils.js"
+import ColorCard from "./ColorCard.jsx"
+
 export default function App(){
 
-const [colorElements,setColorElements]= useState()
+const [totalColors, setTotalColors] =useState(5)
+const [colorElements,setColorElements]= useState([])
+const [colorNameFormat,setColorNameFormat] = useState("hex")
 
-const customSchemes = {
-    random: {h:[0,360], s:[0,100],  l:[0,100]},
-    pastel: {h:[0,360], s:[30,50],  l:[80,90]},
-    neon:   {h:[0,360], s:[90,100], l:[50,60]},
-    earthy: {h:[0,60],  s:[20,40],  l:[30,50]},
-    jewel:  {h:[0,360], s:[70,90],  l:[30,50]},
-    muted:  {h:[0,360], s:[10,30],  l:[40,60]},
-}
+const lockedColors =colorElements.filter(data => data.lock).length 
+const colorCount = Math.max(0,totalColors - lockedColors)
 
 
-function getRandomInt(min,max){
-  return Math.floor(Math.random() * (max-min+1))+min
-}
-
-
-function colorGenerator({h,s,l}){
-  let colorArray = []
-for(let i =0;i<5;i++){
-const hue = getRandomInt(h[0],h[1])
-const saturation = getRandomInt(s[0],s[1])
-const light = getRandomInt(l[0],l[1]) 
-colorArray.push(`${hue},${saturation}%,${light}%`)
-}
-return colorArray
-}
-
-
-function renderColorCard(colorData,index){
-  return(
- <div key={index}>
-    <img src={colorData.image.bare} />
-    <p>{colorData.hex.value}</p>
-    
-    </div>
-    )
-
-}
 async function getColorApi(color,scheme=null){
+
+  if(colorCount === 0){
+    setColorElements(prevState => prevState.filter(data => data.lock))
+    return
+  }
+
   const data = (scheme? 
-    await fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${scheme}`).then(res => res.json()) :
+    await fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${scheme}&count=${colorCount}`).then(res => res.json()) :
     await Promise.all(color.map(hsl => fetch(`https://www.thecolorapi.com/id?hsl=${hsl}`).then(res => res.json()))) 
   )
   const colorData = scheme? data.colors : data
+  
+  const elements = colorData.map((colorData)=>({
+    rgb:colorData.rgb.value,
+    hex:colorData.hex.value,
+    hsl:colorData.hsl.value,
+    name:colorData.name.value,
+    image:colorData.image.bare,
+    lock:false,
+  }))
 
-  const elements = colorData.map((colorData,index)=> renderColorCard(colorData,index))
-  setColorElements(elements)
+
+  
+ if(colorElements.length===0 || lockedColors===0){
+
+   setColorElements(elements)
+  }
+  
+  else{
+    
+    setColorElements([...colorElements.filter(data => data.lock), ...elements])
+
+    } 
+
 }
 
 
 function getColorScheme(e){
   e.preventDefault()
+
   const formEl = e.currentTarget
   const formData = new FormData(formEl)
-
-  
   const scheme =formData.get("color-scheme")
   
+  if(customSchemes[scheme]){
+    const colorArray = colorGenerator(customSchemes[scheme],colorCount)
+
+    getColorApi(colorArray)
+
+  }
+    
+  else{
+    const color = formData.get("color-picker").slice(1)
+    getColorApi(color,scheme)
+    
+  }
+
   
-if(customSchemes[scheme]){
-  const colorArray = colorGenerator(customSchemes[scheme])
-  getColorApi(colorArray)
+}
+function nameFormat(e){
+  setColorNameFormat(e.target.value)
 
 }
-  
-else{
-  const color = formData.get("color-picker").slice(1)
-  getColorApi(color,scheme)
-  
-}
-
-  
+function changeTotal(e){
+  console.log(e.target.value)
+  setTotalColors(Number(e.target.value))
 }
 
   return(
@@ -99,7 +104,18 @@ else{
         <button type="submit">Get color scheme</button>
         </form>
 
-<div id="color-container" className="color-container">{colorElements}</div>
+        <select id="name-format" onChange={nameFormat} defaultValue="hex">
+          <option value="name">Name</option>
+          <option value="hex">Hex</option>
+          <option value="hsl">HSL</option>
+          <option value="rgb">RGB</option>
+        </select>
+        <label htmlFor="num-colors">Num of colors</label>
+        <input id="num-colors" type="number" defaultValue={5} onChange={changeTotal} />
+
+      <ColorCard colorElements={colorElements} setColorElements={setColorElements}  nameFormat={colorNameFormat} totalColors={totalColors}/>
     </main>
   )
 }
+
+
