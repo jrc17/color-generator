@@ -34,8 +34,6 @@ async function getColorApi(color,scheme=null){
     lock:false,
   }))
 
-
-  
  if(colorElements.length===0 || lockedColors===0){
 
    setColorElements(elements)
@@ -83,35 +81,56 @@ function changeTotal(e){
 
   return(
     <main>
+      <h1 className="title  ">Color Generator</h1>
+      <div className="menu">
+       
  <form id="color-form" className="color-form" onSubmit={getColorScheme}>
       <input type="color" id="color-picker" className="color-picker" name="color-picker" defaultValue="#000000"/>
+      <div className="menu-element">
+  <label htmlFor="colorScheme">Color Scheme</label>
       <select id="colorScheme" className="color-scheme" name="color-scheme" defaultValue="random" >
-        <option value="random">Random</option>
-         <option value="pastel">Pastel</option>
-        <option value="neon">Neon</option>
-        <option value="earthy">Earthy</option>
-        <option value="jewel">Jewel</option>
-        <option value="muted">Muted</option>
-        <option value="monochrome">Moochrome</option>
-        <option value="monochrome-dark">Monochrome-dark</option>
-        <option value="monochrome-light">Monochrome-light</option>
-        <option value="analogic">Analogic</option>
-        <option value="complement">Complement</option>
-        <option value="analogic-complement">Analogic-complement</option>
-        <option value="triad">Triad</option>
-        <option value="quad">Quad</option>
+          <option value="random">Random</option>
+          <option value="pastel">Pastel</option>
+          <option value="neon">Neon</option>
+          <option value="earthy">Earthy</option>
+          <option value="jewel">Jewel</option>
+          <option value="muted">Muted</option>
+          <option value="monochrome">Moochrome</option>
+          <option value="monochrome-dark">Monochrome-dark</option>
+          <option value="monochrome-light">Monochrome-light</option>
+          <option value="analogic">Analogic</option>
+          <option value="complement">Complement</option>
+          <option value="analogic-complement">Analogic-complement</option>
+          <option value="triad">Triad</option>
+          <option value="quad">Quad</option>
         </select>
+        </div>
+
+        <div className="menu-element">
+          <label htmlFor="num-colors">Color Count</label>
+          <input id="num-colors" className="color-count" type="number" defaultValue={5} onChange={changeTotal} min="1" max="20"/>
+        </div>
+
         <button type="submit">Get color scheme</button>
         </form>
 
-        <select id="name-format" onChange={nameFormat} defaultValue="hex">
+      <div className="sub-menu">
+
+       <div className="menu-element">
+        <label htmlFor="color-format">Color Format</label>
+           <select id="color-format" onChange={nameFormat} defaultValue="hex" className="color-format">
           <option value="name">Name</option>
           <option value="hex">Hex</option>
           <option value="hsl">HSL</option>
           <option value="rgb">RGB</option>
         </select>
-        <label htmlFor="num-colors">Num of colors</label>
-        <input id="num-colors" type="number" defaultValue={5} onChange={changeTotal} />
+</div>
+
+
+      
+        </div>
+
+        </div>
 
       <ColorCard colorElements={colorElements} setColorElements={setColorElements}  nameFormat={colorNameFormat} totalColors={totalColors}/>
     </main>
