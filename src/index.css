@@ -2,21 +2,65 @@
   box-sizing: border-box;
   margin: 0;
 }
+
 body,
 select {
   font-family: "Inter", sans-serif;
+
 }
-.title{
-  text-align: center;
-  margin: 1em 0;
+header{
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5vw 5vw;
+  border-bottom: 1px solid #CCCCCC;
 }
+.logo{
+  max-width: 200px;
+  /* margin-left:25%; */
+}
+.help-btn{
+  border: none;
+  box-shadow: none;
+  font-size: 1rem;
+  
+}
+.help-btn > .fa-regular{
+  font-size: 1.5rem;
+  color: #000;
+  width: 100%;
+  height: 100%;
+ 
+}
+.help-btn:hover,
+.help-btn .fa-regular:hover,
+.help-btn:focus-visible,
+.help-btn .fa-regular:focus-visible{
+  color: #FF4040;
+}
+
+
+
+main{
+    display: flex;
+  flex-direction: column;
+
+  height:100vh;
+ }
+ .color-app{
+    display: flex;
+  flex-direction: column;
+  flex:1;
+ 
+ }
 .menu{
   display:flex;
   justify-content: space-between ;
   align-items: center;
   gap:1em;
   padding: 0 5vw;
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 .sub-menu{
   display: flex;
@@ -30,7 +74,7 @@ select {
 }
 label{
   font-size: 0.75rem;
-  margin-bottom:0.25em;
+  margin-bottom:0.5em;
   
 }
 .color-form {
@@ -49,9 +93,13 @@ label{
 }
 .color-form select {
   width:250px ;   
-  /* width:100%; */
+
 
 }
+button, select,input[type="color"] ,.logo{
+  cursor: pointer;
+}
+
 select,
 ::picker(select) {
   appearance: base-select;
@@ -118,8 +166,8 @@ button {
   width:5em;
 }
 .color-container {
+flex:1;
 
-  height: 79vh;
   text-align: center;
   color: #2b283a;
   display:grid;
@@ -136,10 +184,12 @@ button {
 img {
   width: 100%;
   height: 100%;
- 
+  
   
 }
 .color-info{
+  /* width: 100%; */
+  height: 100%;
   position: relative;
  /* flex:1 1 175px; */
   
@@ -166,11 +216,31 @@ img {
   background: none;
   border: none;
   box-shadow: none;
+  
 
 }
 .fa-solid{
   font-size: 1.25rem;
   pointer-events: none;
+}
+
+.help-section{
+margin:2em 15em;
+max-width:1000px;
+
+}
+.help-section h1{
+  margin-bottom: 0.5em;;
+}
+.help-section h2{
+  margin: 1em 0 0.5em 0;
+  font-weight: 500;
+}
+.help-section li{
+  margin-bottom:0.75em;
+}
+.help-section p{
+  margin-top:1em;
 }
 
 @media (max-width:890px){

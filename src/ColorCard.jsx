@@ -1,6 +1,7 @@
 export default function ColorCard(props){
+
  function lock(e){
-      console.log("lock/unlock clicked "+e.target.id)
+     
      
       props.setColorElements(prevState => {
 
