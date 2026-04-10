@@ -17,7 +17,7 @@ export default function App(){
   return(
     <main>
       <header>
-        <a href="https://www.ratnaarts.com/"><img src="/public/logo.svg" className="logo"/></a>
+        <a href="https://www.ratnaarts.com/"><img src="public/logo.svg" className="logo"/></a>
         <button 
           className="help-btn" 
           onClick={changeSection}>
