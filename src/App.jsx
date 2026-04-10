@@ -1,7 +1,7 @@
 import {useState} from "react"
 import ColorApp from "./ColorApp"
 import Help from "./Help"
-
+import logo from "../src/assets/logo.svg"
 
 
 export default function App(){
@@ -17,7 +17,7 @@ export default function App(){
   return(
     <main>
       <header>
-        <a href="https://www.ratnaarts.com/"><img src="public/logo.svg" className="logo"/></a>
+        <a href="https://www.ratnaarts.com/"><img src={logo} className="logo"/></a>
         <button 
           className="help-btn" 
           onClick={changeSection}>
