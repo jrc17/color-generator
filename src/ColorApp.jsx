@@ -17,6 +17,7 @@ export default function ColorApp(){
           setColorElements={setColorElements}  
           nameFormat={colorNameFormat} 
           totalColors={totalColors} 
+          setColorNameFormat={setColorNameFormat}
           setTotalColors={setTotalColors}/>
 
         <ColorCard 

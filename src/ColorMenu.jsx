@@ -65,7 +65,7 @@ export default function ColorMenu(props){
       
     }
     function nameFormat(e){
-      setColorNameFormat(e.target.value)
+      props.setColorNameFormat(e.target.value)
     
     }
     function changeTotal(e){

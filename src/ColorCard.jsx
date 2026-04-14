@@ -36,20 +36,44 @@ function colorInfoStyle(rgbColor){
 
 
 }
+      function copyColor(color){
+            
+            navigator.clipboard.writeText(color)}
+      
 
   return(
    <div id="color-container" className="color-container">
    {
-    props.colorElements.map((data,index)=>(
+    props.colorElements.map((data,index)=>{
+
+      const style = colorInfoStyle(data.rgb)
+      const color = data[props.nameFormat]
+      
+     return (
           <div key={index} className="color-info">
             <img src={data.image} />
-            <p className="color-format-text" style={colorInfoStyle(data.rgb)}>{data[props.nameFormat]}</p>
+            <p className="color-format-text" style={style}>{color}</p>
             <div className="color-options">
-            <button id={index} onClick={lock} style={colorInfoStyle(data.rgb)}> {props.colorElements[index].lock? <i className="fa-solid fa-lock"></i>:<i className="fa-solid fa-unlock"></i>} </button>
-            <button id={index} onClick={deleteColor} style={colorInfoStyle(data.rgb)}> <i className="fa-solid fa-x"></i></button>
+            <button 
+                  id={index} 
+                  onClick={lock} 
+                  style={style}>
+                         {props.colorElements[index].lock? 
+                              <i className="fa-solid fa-lock"></i>:
+                              <i className="fa-solid fa-unlock"></i>} 
+            </button>
+            <button 
+                  id={index} 
+                  onClick={deleteColor} 
+                  style={style}>
+                         <i className="fa-solid fa-x"></i></button>
+            <button 
+            style={style} 
+            onClick={()=>copyColor(color)}>
+                   <i className="fa-solid fa-copy"></i></button>
             </div>
           </div>
-    ))
+    )})
    }
      
     </div>

@@ -12,10 +12,10 @@ export default function Help(){
     <li>Select a color scheme from the dropdown menu. Schemes from Monochrome to Quad require you to pick a base color using the color picker. Everything else generates automatically.</li>
     <li>Press the “Get color scheme” button to generate a color scheme	</li>
     <li>You can lock, unlock, or remove individual colors. Locking a color keeps it in place when you regenerate the palette.</li>
-
+    
     <li> Use the color count to choose how many colors appear in your palette, between 1 and 20. Note that locked colors count toward this number — so if you have 5 colors, lock 2, and regenerate with a count of 5, only 3 new colors will appear alongside your locked one</li>
     <li>Use the color format menu to display color values in your preferred format — HEX, RGB, or others.</li>
-
+    <li>Each color has a copy button that copies the color value in the format as selected in the color format menu.</li>
     </ul>
     <p>Note: Currently the app does not support exporting colors directly. You can screenshot or note down the values you want to keep.</p>
 </section>
