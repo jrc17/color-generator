@@ -17,7 +17,7 @@ export default function Help(){
     <li>Use the color format menu to display color values in your preferred format — HEX, RGB, or others.</li>
     <li>Each color has a copy button that copies the color value in the format as selected in the color format menu.</li>
     </ul>
-    <p>Note: Currently the app does not support exporting colors directly. You can screenshot or note down the values you want to keep.</p>
+   
 </section>
 
 <section>
